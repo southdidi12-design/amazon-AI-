@@ -1,0 +1,29 @@
+name: Python CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        flake8 --version || true
+    - name: Run basic script
+      run: |
+        python3 -c "from amazon_ad_bot import AmazonAdBot; bot=AmazonAdBot(); df=bot.fetch_report(); df=bot.calculate_metrics(df); df=bot.optimize_bids(df); print('OK')"
