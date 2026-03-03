@@ -1,2 +1,4 @@
 pandas
 numpy
+django>=4.2
+djangorestframework

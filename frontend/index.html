@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Amazon Ads AI（演示）</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Amazon Ads 智能助理</h1>
+        <p class="lead">AI 建议受众、文案、否词与竞价优化（每日预算由你控制）</p>
+      </header>
+
+      <main>
+        <form id="setupForm">
+          <label>产品标题<input id="title" required></label>
+          <label>产品详情<textarea id="details"></textarea></label>
+          <label>目标 ACoS (%)<input id="acos" type="number" value="15" required></label>
+          <label>每日预算（USD）<input id="budget" type="number" value="10" required></label>
+          <div class="actions">
+            <button id="audienceBtn" type="button">生成受众建议</button>
+            <button id="copyBtn" type="button">生成广告文案</button>
+            <button id="createDraftBtn" type="button">创建广告草案</button>
+          </div>
+        </form>
+
+        <section id="results"></section>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

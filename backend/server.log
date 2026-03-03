@@ -1,0 +1,22 @@
+node:internal/modules/cjs/loader:1458
+  throw err;
+  ^
+
+Error: Cannot find module 'dotenv/config'
+Require stack:
+- internal/preload
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1455:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1065:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1070:22)
+    at Module._load (node:internal/modules/cjs/loader:1241:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1555:12)
+    at Module._preloadModules (node:internal/modules/cjs/loader:2112:12)
+    at loadPreloadModules (node:internal/process/pre_execution:712:5)
+    at initializeModuleLoaders (node:internal/process/pre_execution:241:5)
+    at prepareExecution (node:internal/process/pre_execution:169:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'internal/preload' ]
+}
+
+Node.js v25.7.0

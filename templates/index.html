@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Amazon Ads Monitor</title>
+    <style>
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ddd; padding: 8px; }
+    </style>
+  </head>
+  <body>
+    <h1>Amazon Ads Monitor</h1>
+    <button id="run">Run Bot Now</button>
+    <h2>Recent Reports</h2>
+    <div id="reports"></div>
+
+    <script>
+      async function fetchReports(){
+        const res = await fetch('/api/reports/');
+        const data = await res.json();
+        const container = document.getElementById('reports');
+        if(!data.length){ container.innerHTML = '<p>No reports yet.</p>'; return; }
+        let html = '';
+        data.forEach(r => {
+          html += `<h3>Report ${r.id} - ${r.created_at}</h3>`;
+          html += '<table><tr><th>keyword</th><th>match</th><th>spend</th><th>sales</th><th>acos</th><th>current</th><th>new</th><th>action</th></tr>';
+          r.data.forEach(row=>{
+            html += '<tr>' +
+              `<td>${row.keyword}</td>`+
+              `<td>${row.match_type}</td>`+
+              `<td>${row.spend}</td>`+
+              `<td>${row.sales}</td>`+
+              `<td>${row.acos}</td>`+
+              `<td>${row.current_bid}</td>`+
+              `<td>${row.new_bid}</td>`+
+              `<td>${row.action}</td>`+
+              '</tr>';
+          });
+          html += '</table>';
+        });
+        container.innerHTML = html;
+      }
+
+      document.getElementById('run').addEventListener('click', async ()=>{
+        document.getElementById('run').disabled = true;
+        await fetch('/api/run/', { method: 'POST' });
+        await fetchReports();
+        document.getElementById('run').disabled = false;
+      });
+
+      fetchReports();
+    </script>
+  </body>
+</html>
