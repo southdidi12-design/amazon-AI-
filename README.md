@@ -2,15 +2,9 @@
 
 这是一个用于模拟亚马逊广告竞价优化的小工具，包含：
 
-- `amazon_ad_bot.py`：主逻辑，模拟获取广告数据、计算指标并生成出价建议。
-- `save_and_open_report.py`：将优化结果保存为 CSV 并在 macOS 上打开。
-- `requirements.txt`：项目依赖（pandas、numpy）。
 
 主要功能：
 
-- 计算 CPC/CVR/ACOS 并根据目标 ACOS 自动给出 `new_bid`。
-- 自动识别高花费但无销量的“烧钱词”，并将其出价降到最小值以止损。
-- 对表现优秀的关键词小幅提价以扩量，对表现不佳的关键词降价以控制成本。
 
 快速开始：
 
@@ -35,7 +29,37 @@ python3 save_and_open_report.py
 许可与贡献：
 
 仓库包含 MIT 许可证。欢迎提交 issue 与 PR。  
-# Amazon Ads + AI 演示
+
+这是该仓库的中文说明。项目现在包含一个最小的 Django 后端、REST API 以及前端监控页面。
+
+主要文件：
+
+- `amazon_ad_bot.py`：原有的广告优化逻辑（已封装为服务）。
+- `ads/service.py`：调用 `amazon_ad_bot` 并返回可序列化结果。
+- `dashboard/`：Django 项目代码，包含 `ads` 应用。
+- `Dockerfile`：用于构建部署镜像。
+
+快速运行（本地开发）：
+
+```bash
+cd /Users/zhouzhou/Downloads/lan❤️/amazon
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+python3 manage.py migrate
+python3 manage.py runserver 0.0.0.0:8000
+# 打开 http://127.0.0.1:8000
+```
+
+运行说明：
+
+- 在首页点击“立即运行 AI 优化”会触发 `/api/run/`，并把生成的报告保存到数据库；首页会列出最近的报告。
+- 管理后台：`/admin/`（已创建超级用户后登录）。
+
+部署：已包含 `Dockerfile`，可构建镜像并推送到容器平台。
+
+许可：MIT。欢迎 issue/PR。
+
 
 这是一个最小可运行的示例项目，演示如何把 AI 集成到亚马逊广告工作流：生成受众建议、广告文案，创建广告草案，并给出优化建议。
 

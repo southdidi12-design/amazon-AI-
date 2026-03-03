@@ -9,9 +9,9 @@
     </style>
   </head>
   <body>
-    <h1>Amazon Ads Monitor</h1>
-    <button id="run">Run Bot Now</button>
-    <h2>Recent Reports</h2>
+    <h1>亚马逊广告监控</h1>
+    <button id="run">立即运行 AI 优化</button>
+    <h2>最近的报告</h2>
     <div id="reports"></div>
 
     <script>
@@ -19,11 +19,11 @@
         const res = await fetch('/api/reports/');
         const data = await res.json();
         const container = document.getElementById('reports');
-        if(!data.length){ container.innerHTML = '<p>No reports yet.</p>'; return; }
+        if(!data.length){ container.innerHTML = '<p>暂无报告。</p>'; return; }
         let html = '';
         data.forEach(r => {
-          html += `<h3>Report ${r.id} - ${r.created_at}</h3>`;
-          html += '<table><tr><th>keyword</th><th>match</th><th>spend</th><th>sales</th><th>acos</th><th>current</th><th>new</th><th>action</th></tr>';
+          html += `<h3>报告 ${r.id} - ${r.created_at}</h3>`;
+          html += '<table><tr><th>关键词</th><th>匹配</th><th>花费</th><th>销售额</th><th>ACOS</th><th>当前出价</th><th>建议出价</th><th>操作</th></tr>';
           r.data.forEach(row=>{
             html += '<tr>' +
               `<td>${row.keyword}</td>`+
