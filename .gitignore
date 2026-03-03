@@ -1,0 +1,37 @@
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+*.egg-info/
+*.egg
+dist/
+build/
+
+# SQLite DB
+/db.sqlite3
+*.sqlite3
+
+# macOS
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+
+# Logs and runtime
+*.log
+
+# Local reports (ignore generated optimization reports)
+optimization_report_*.csv
